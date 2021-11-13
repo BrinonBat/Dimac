@@ -10,7 +10,7 @@ class Graphe:
         g=open('D_graphes/'+fic,'r')
         for li in g:
             elems=li.split()
-            if(elems[0]=='p'): self.mat_ajd=[([0]*(int(elems[2])+1))]*(int(elems[2])+1) # création d'une matrice de 0
+            if(elems[0]=='p'): self.mat_adj=[([0]*(int(elems[2])+1))]*(int(elems[2])+1) # création d'une matrice de 0
             elif(elems[0]=='e'): self.mat_adj[int(elems[1])][int(elems[2])]=1 # place un 1 dans la case correspondante
 
         #TODO premiere coloration
@@ -23,7 +23,7 @@ class Graphe:
         return "\n graphe du fichier "+self.nom_fic+"\n coloré tel que suit :"+str(self.couleurs)
 
 def evalueColoration(coloration):
-    comptage=[0]*max(coloration)
+    comptage=[0]*(max(coloration)+1)
     resultat=0
 
     for elem in coloration:
@@ -31,5 +31,5 @@ def evalueColoration(coloration):
 
     for couleur in comptage:
         resultat+=couleur*comptage[couleur]
-
+        
     return resultat
