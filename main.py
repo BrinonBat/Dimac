@@ -1,4 +1,4 @@
 import Graphe
 
-test=Graphe("DSCJ500.1")
+test=Graphe.Graphe("DSJC500.1")
 print(test)
