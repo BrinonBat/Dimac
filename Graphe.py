@@ -37,7 +37,7 @@ class Graphe:
                     self.set_couleurs[suivant].append(sommet)
         self.nb_couleurs=max(self.couleurs)
         """
-        """
+    
         #première coloration par algo glouton - min
         #donne 1 comme couleur possible à tous
         self.set_couleurs=[[1]]
@@ -56,7 +56,7 @@ class Graphe:
             self.couleurs.append(self.set_couleurs[sommet][0])
             self.set_couleurs[sommet].remove(self.set_couleurs[sommet][0])
         
-        """
+            """
         #première coloration par algo glouton - max
         #donne 1 comme couleur possible à tous
         self.set_couleurs=[[1]]
@@ -75,12 +75,13 @@ class Graphe:
             taille=len(self.set_couleurs[sommet])-1
             self.couleurs.append(self.set_couleurs[sommet][taille])
             self.set_couleurs[sommet].remove(self.set_couleurs[sommet][taille])
+            """
 
             for suivant in range((len(self.mat_adj)-1)):
                 if self.mat_adj[sommet][suivant]==1:
                     if self.couleurs[sommet] in self.set_couleurs[suivant]: self.set_couleurs[suivant].remove(self.couleurs[sommet])
 
-    
+
     def __str__(self):
         return "\n graphe du fichier "+self.nom_fic+"\n coloré tel que suit :"+str(self.couleurs)
 
