@@ -37,8 +37,8 @@ class Graphe:
                     self.set_couleurs[suivant].append(sommet)
         self.nb_couleurs=max(self.couleurs)
         """
-        
-        #première coloration par algo glouton
+        """
+        #première coloration par algo glouton - min
         #donne 1 comme couleur possible à tous
         self.set_couleurs=[[1]]
         for i in range (len(self.mat_adj)):
@@ -55,6 +55,26 @@ class Graphe:
             #attribution de la couleur
             self.couleurs.append(self.set_couleurs[sommet][0])
             self.set_couleurs[sommet].remove(self.set_couleurs[sommet][0])
+        
+        """
+        #première coloration par algo glouton - max
+        #donne 1 comme couleur possible à tous
+        self.set_couleurs=[[1]]
+        for i in range (len(self.mat_adj)):
+            self.set_couleurs.append([1])
+        self.nb_couleurs=1
+        self.couleurs=[]
+        for sommet in range(len(self.mat_adj)):
+            #cas de sommet sans couleur disponible
+            if(self.set_couleurs[sommet]==[]):
+                #on créée une couleur supplémentaire, que l'on ajoute aux possibilités des autres sommets
+                self.nb_couleurs+=1
+                for suivant in range(len(self.mat_adj)-1):
+                    self.set_couleurs[suivant].append(self.nb_couleurs)
+            #attribution de la couleur
+            taille=len(self.set_couleurs[sommet])-1
+            self.couleurs.append(self.set_couleurs[sommet][taille])
+            self.set_couleurs[sommet].remove(self.set_couleurs[sommet][taille])
 
             for suivant in range((len(self.mat_adj)-1)):
                 if self.mat_adj[sommet][suivant]==1:
