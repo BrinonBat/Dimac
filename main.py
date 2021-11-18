@@ -17,7 +17,8 @@ print("coloration test "+str(Graphe.evalueColoration(test.couleurs)))
 #print(test)
 #print("modification test "+str(Graphe.evalueColoration(test.couleurs)))
 
-metaheuristiques.tabou(test)
+taille_liste=2
+metaheuristiques.tabou(test,taille_liste)
 
 print(test)
 print(test.nb_couleurs)
