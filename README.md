@@ -6,6 +6,8 @@ Le but est de trouver une coloration de graphe minimisant la somme du produit de
  - [x] modélisation du problème 
  - [x] lecture de graphs à partir du fichier
  - [x] ajout d'une primo-coloration du graphe
- - [ ] premier algo tabou
+ - [x] premier algo tabou
+ - [ ] optimiser l'algo et la modélisation à l'aide de quelques articles
+ - [ ] ajout d'une seed pour le random et d'une génération de graphiques pour visualiser
  - [ ] premier algo recuit simulé
  - [ ] renseignement sur les méthodes mises en place pour la résolution du problème
