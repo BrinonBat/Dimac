@@ -5,11 +5,10 @@ def recuitSimule(graphe):
     pass
 
 #garde une structure de la forme [[indice,ancienne_val]]
-def tabou(graphe):
+def tabou(graphe,taille_liste):
     #initialisation
     parcours=[]
     for iter in range(0,300):
-        print(" iteration "+str(iter)+": "+str(Graphe.evalueColoration(graphe.couleurs)))
         min_val=9999999
         suivante=[]
         #on itère une fois pour chaque élément de la liste
@@ -49,11 +48,13 @@ def tabou(graphe):
             graphe.changeCouleur(pos,anc_couleur)
         
         #application de la modification du meilleur voisin
-        #print("suivante : "+str(suivante))
         if(len(suivante)>1): select=random.randrange(0,len(suivante)-1)
         else : select=0
         graphe.changeCouleur(suivante[select][0],suivante[select][1])
+        print("suivante : "+str(suivante[select]))
         parcours.append(suivante[select])
         suivante=[]
+        print(" iteration "+str(iter)+": "+str(Graphe.evalueColoration(graphe.couleurs)))
+
     graphe.nb_couleurs=max(graphe.couleurs)
     pass
