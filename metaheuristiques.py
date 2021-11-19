@@ -20,9 +20,9 @@ def tabou(graphe,taille_liste):
             graphe.changeCouleur(pos,nouv_couleur)
             
 
-            if len(parcours)>=2:
+            if len(parcours)>=taille_liste:
                 #si la couleur n'est pas valide
-                while ((not graphe.estValide()) or [pos,nouv_couleur] in parcours[-2:]):
+                while ((not graphe.estValide()) or [pos,nouv_couleur] in parcours[-taille_liste:]):
                     #annule la modification
                     graphe.changeCouleur(pos,anc_couleur)
 
