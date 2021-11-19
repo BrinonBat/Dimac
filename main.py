@@ -1,6 +1,16 @@
 import Graphe
 import metaheuristiques
-test=Graphe.Graphe("DSJC500.1")
+
+
+
+
+#récupération des seeds et lancement
+s=open('randomSeeds.csv','r')
+for li in s:
+    seeds=li.split()
+    seed=int(seeds[0])
+
+test=Graphe.Graphe("DSJC500.1",seed)
 est_valide=True
 for elem in range(len(test.mat_adj)):
     if test.aUneCouleurValide(elem)!=True : est_valide=False

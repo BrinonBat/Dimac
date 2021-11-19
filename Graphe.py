@@ -1,12 +1,13 @@
+from os import remove
+import bisect
+import primoColorations
+
 # nom_fic : string
 # mat_adj : list<list<bool>> matrice d'adjacence du graphe
 # couleurs: list<int>, meilleure coloration jusqu'à maintenant
 # nb_couleurs: int
-from os import remove
-import bisect
-
 class Graphe:
-    def __init__(self,fic):
+    def __init__(self,fic,seed):
         self.nom_fic=fic
 
         #génération de la matrice d'adjacence
@@ -24,62 +25,8 @@ class Graphe:
                 self.mat_adj[int(elems[2])][int(elems[1])]=1
                 self.mat_adj[int(elems[1])][int(elems[2])]=1
 
-        """    
-        #première coloration par une couleur par sommet
-        self.set_couleurs=[]
-        for i in range (len(self.mat_adj)):
-            self.set_couleurs.append([])
-        self.couleurs=[]
-        for sommet in range(len(self.mat_adj)):
-            self.couleurs.append(sommet)
-            for suivant in range((len(self.mat_adj)-1)):
-                if self.mat_adj[sommet][suivant]!=1:
-                    self.set_couleurs[suivant].append(sommet)
-        self.nb_couleurs=max(self.couleurs)
-        """
-    
-        #première coloration par algo glouton - min
-        #donne 1 comme couleur possible à tous
-        self.set_couleurs=[[1]]
-        for i in range (len(self.mat_adj)):
-            self.set_couleurs.append([1])
-        self.nb_couleurs=1
-        self.couleurs=[]
-        for sommet in range(len(self.mat_adj)):
-            #cas de sommet sans couleur disponible
-            if(self.set_couleurs[sommet]==[]):
-                #on créée une couleur supplémentaire, que l'on ajoute aux possibilités des autres sommets
-                self.nb_couleurs+=1
-                for suivant in range(len(self.mat_adj)-1):
-                    self.set_couleurs[suivant].append(self.nb_couleurs)
-            #attribution de la couleur
-            self.couleurs.append(self.set_couleurs[sommet][0])
-            self.set_couleurs[sommet].remove(self.set_couleurs[sommet][0])
-        
-            """
-        #première coloration par algo glouton - max
-        #donne 1 comme couleur possible à tous
-        self.set_couleurs=[[1]]
-        for i in range (len(self.mat_adj)):
-            self.set_couleurs.append([1])
-        self.nb_couleurs=1
-        self.couleurs=[]
-        for sommet in range(len(self.mat_adj)):
-            #cas de sommet sans couleur disponible
-            if(self.set_couleurs[sommet]==[]):
-                #on créée une couleur supplémentaire, que l'on ajoute aux possibilités des autres sommets
-                self.nb_couleurs+=1
-                for suivant in range(len(self.mat_adj)-1):
-                    self.set_couleurs[suivant].append(self.nb_couleurs)
-            #attribution de la couleur
-            taille=len(self.set_couleurs[sommet])-1
-            self.couleurs.append(self.set_couleurs[sommet][taille])
-            self.set_couleurs[sommet].remove(self.set_couleurs[sommet][taille])
-            """
-
-            for suivant in range((len(self.mat_adj)-1)):
-                if self.mat_adj[sommet][suivant]==1:
-                    if self.couleurs[sommet] in self.set_couleurs[suivant]: self.set_couleurs[suivant].remove(self.couleurs[sommet])
+        #première coloration
+        primoColorations.aleatoire(self,seed)
 
 
     def __str__(self):
