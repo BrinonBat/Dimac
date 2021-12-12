@@ -8,7 +8,7 @@ Le but est de trouver une coloration de graphe minimisant la somme du produit de
  - [x] ajout d'une primo-coloration du graphe
  - [x] premier algo tabou
  - [x] ajout d'un fichier avec les primo-colorations
- - [ ] optimiser l'algo et la modélisation à l'aide de quelques articles
+ - [x] optimiser l'algo et la modélisation à l'aide de quelques articles
  - [x] ajout d'une seed pour le random
  - [ ] génération de graphiques pour visualiser
  - [ ] premier algo recuit simulé
