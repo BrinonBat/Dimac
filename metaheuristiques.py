@@ -10,7 +10,6 @@ def tabu(graphe,duree_tabou,nb_iter):
     liste_tabou=np.zeros(shape=(len(graphe.mat_adj),graphe.nb_couleurs+1))
     #initialisation
     for iter in range(0,nb_iter):
-        print("deb")
         min_val=9999999
         #on itère une fois pour chaque élément de la liste
         for pos in range(len(graphe.mat_adj)):
@@ -53,16 +52,14 @@ def tabu(graphe,duree_tabou,nb_iter):
     #récupération du meilleur graphe trouvé
     #trouve le meilleur graphe
     position=0
-    print(parcours)
+    print("récupération de la meilleure coloration...")
     for i in range(1,nb_iter):
         coup=parcours[-i]  #[position,ancienne_couleur,ancien_score]
         if(coup[2]<value):
-            print(" actual value is "+str(value)+" tested value is "+str(coup[2]))
             value=coup[2]
             position=i
     #le regénére si besoin
     if(position>0):
-        print("entered")
         for i in range(1,position+1):
             coup=parcours[-i]
             graphe.changeCouleur(coup[0],coup[1])
