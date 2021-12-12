@@ -5,7 +5,7 @@ def recuitSimule(graphe):
     pass
 
 #garde une structure de la forme [[indice,ancienne_val]]
-def tabu(graphe,duree_tabou,nb_iter):
+def tabu(graphe,duree_tabou,nb_iter,verbose):
     parcours=[]
     liste_tabou=np.zeros(shape=(len(graphe.mat_adj),graphe.nb_couleurs+1))
     #initialisation
@@ -44,15 +44,16 @@ def tabu(graphe,duree_tabou,nb_iter):
         liste_tabou[suivante[select][0],suivante[select][1]]=iter+duree_tabou
         value=Graphe.evalueColoration(graphe.couleurs)
         parcours.append([suivante[select][0],ancienne_couleur,ancien_score])
-        print("suivante : "+str(suivante[select]))
-        print(" iteration "+str(iter)+": "+str(value))
+        if(verbose):
+            print("suivante : "+str(suivante[select]))
+            print(" iteration "+str(iter)+": "+str(value))
         suivante=[]
 
 
     #récupération du meilleur graphe trouvé
     #trouve le meilleur graphe
     position=0
-    print("récupération de la meilleure coloration...")
+    if(verbose): print("récupération de la meilleure coloration...")
     for i in range(1,nb_iter):
         coup=parcours[-i]  #[position,ancienne_couleur,ancien_score]
         if(coup[2]<value):
