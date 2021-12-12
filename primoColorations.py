@@ -62,8 +62,7 @@ def numSommet(graphe):
                 if graphe.mat_adj[sommet][suivant]==1:
                     if graphe.couleurs[sommet] in graphe.set_couleurs[suivant]: graphe.set_couleurs[suivant].remove(graphe.couleurs[sommet])
 
-def aleatoire(graphe,seed): 
-    random.seed(seed)
+def aleatoire(graphe): 
     graphe.set_couleurs=[[1]]
     for i in range (len(graphe.mat_adj)):
         graphe.set_couleurs.append([1])
