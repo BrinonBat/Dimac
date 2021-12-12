@@ -1,7 +1,7 @@
 import Graphe
 import metaheuristiques
 import time
-
+import random
 
 
 #récupération des seeds et lancement
@@ -9,29 +9,21 @@ s=open('randomSeeds.csv','r')
 for li in s:
     seeds=li.split()
     seed=int(seeds[0])
-
+random.seed(seed)
 #premiere coloration
-test=Graphe.Graphe("DSJC500.1",seed)
-
-est_valide=True
-for elem in range(len(test.mat_adj)):
-    if test.aUneCouleurValide(elem)!=True : est_valide=False
-
-print(test)
-
-
-
-print(test.nb_couleurs)
-print("coloration test "+str(Graphe.evalueColoration(test.couleurs)))
+graphe=Graphe.Graphe("DSJC500.1")
+print(graphe.nb_couleurs)
+print("coloration graphe "+str(Graphe.evalueColoration(graphe.couleurs)))
 
 duree=time.time()
 #lancement de l'algo
-taille_liste=2
-metaheuristiques.tabu_nouv(test,taille_liste)
+taille_liste=200
+metaheuristiques.tabu(graphe,taille_liste,1000)
 end=time.time()
 duree=(end-duree)
 
-print(test)
-print(test.nb_couleurs)
-print(" est valide ? "+str(test.estValide()))
+print(graphe)
+print(graphe.nb_couleurs)
+print(" est valide ? "+str(graphe.estValide()))
+print("son score est de "+str(Graphe.evalueColoration(graphe.couleurs)))
 print('durée totale :'+str(duree))
