@@ -7,7 +7,7 @@ import primoColorations
 # couleurs: list<int>, meilleure coloration jusqu'à maintenant
 # nb_couleurs: int
 class Graphe:
-    def __init__(self,fic,seed):
+    def __init__(self,fic):
         self.nom_fic=fic
 
         #génération de la matrice d'adjacence
@@ -26,8 +26,10 @@ class Graphe:
                 self.mat_adj[int(elems[1])][int(elems[2])]=1
 
         #première coloration
-        primoColorations.aleatoire(self,seed)
-
+        #primoColorations.aleatoire(self)
+        #primoColorations.gloutonMax(self)
+        primoColorations.gloutonMin(self)
+        
 
     def __str__(self):
         return "\n graphe du fichier "+self.nom_fic+"\n coloré tel que suit :"+str(self.couleurs)
@@ -45,9 +47,8 @@ class Graphe:
         return True
 
     def changeCouleur(self,position,couleur):
-        bisect.insort(self.set_couleurs[position],self.couleurs[position])
-        #self.set_couleurs[position].insert(self.couleurs[position])
-        self.set_couleurs[position].remove(couleur)
+        bisect.insort(self.set_couleurs[position],self.couleurs[position]) # réinsertion de la couleur actuelle dans celles possibles
+        self.set_couleurs[position].remove(couleur) # retrait de la nouvelle couleur de celles possibles
 
         #maj des possibilités de couleur des voisins
 
@@ -55,7 +56,7 @@ class Graphe:
         for pos in range(len(self.mat_adj)-1): # pour chaque voisin
             if self.mat_adj[position][pos]==1 and (not self.couleurs[position] in self.set_couleurs[pos] ):
                 peut_avoir_couleur=True # il peut maintenant avoir l'ancienne couleur
-                for voisin in range (len(self.mat_adj)-1): # sauf si un autre de ses voisins
+                for voisin in range (len(self.mat_adj)-1): # sauf si un autre de ses voisins l'a
                     if ((voisin!=position) and self.mat_adj[pos][voisin]==1 and self.couleurs[voisin]==self.couleurs[position]) : peut_avoir_couleur=False
 
                 if(peut_avoir_couleur) : bisect.insort(self.set_couleurs[pos],self.couleurs[position])
