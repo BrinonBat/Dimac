@@ -5,9 +5,10 @@ import primoColorations
 # nom_fic : string
 # mat_adj : list<list<bool>> matrice d'adjacence du graphe
 # couleurs: list<int>, meilleure coloration jusqu'à maintenant
+# set_couleurs: list<list<int>> matrice indiquant pour chaque sommet les couleurs qu'il peut prendre
 # nb_couleurs: int
 class Graphe:
-    def __init__(self,fic):
+    def __init__(self,fic,primo_colo):
         self.nom_fic=fic
 
         #génération de la matrice d'adjacence
@@ -26,10 +27,10 @@ class Graphe:
                 self.mat_adj[int(elems[1])][int(elems[2])]=1
 
         #première coloration
-        #primoColorations.aleatoire(self)
-        #primoColorations.gloutonMax(self)
-        primoColorations.gloutonMin(self)
-        
+        if(primo_colo=="rand"):primoColorations.aleatoire(self)
+        elif(primo_colo=="max"):primoColorations.gloutonMax(self)
+        elif(primo_colo=="min"):primoColorations.gloutonMin(self)
+        else:  print("WRONG PRIMO COLORATION")
 
     def __str__(self):
         return "\n graphe du fichier "+self.nom_fic+"\n coloré tel que suit :"+str(self.couleurs)
