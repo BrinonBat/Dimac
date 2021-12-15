@@ -45,7 +45,6 @@ def show(csv_name):
     
     print(courbes)
     #ajout des courbes au graphique
-    print("here")
     for courbe in courbes:
         plt.plot([int(float(elem)) for elem in taille_tabou],courbe[1:],label=str(courbe[0]))
 
@@ -58,11 +57,17 @@ def show(csv_name):
     plt.savefig("resultats/"+csv_name+".png")
     plt.close()
 
-show("250_min")
-show("500_min")
-show_mean("250_min")
-show_mean("250_max")
-show_mean("250_rand")
-show_mean("500_min")
-show_mean("500_max")
-show_mean("500_rand")
+show("250.5_min")
+show("500.5_min")
+show_mean("250.5_min")
+show_mean("250.5_max")
+show_mean("250.5_rand")
+show_mean("500.1_min")
+show_mean("500.1_max")
+show_mean("500.1_rand")
+show_mean("500.5_min")
+show_mean("500.5_max")
+show_mean("500.5_rand")
+show_mean("1000.1_min")
+show_mean("1000.1_max")
+show_mean("1000.1_rand")
